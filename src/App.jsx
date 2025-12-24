@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Componentes
 import Header from './components/Header';
-import Footer from './components/Footer'; // <--- Importe aqui
+import Footer from './components/Footer';
 
 // Páginas
 import Inicio from './pages/Inicio';
@@ -15,7 +15,9 @@ import Contato from './pages/Contato';
 
 function App() {
   return (
-    <Router>
+    // AQUI ESTÁ O TRUQUE: basename
+    // Ele pega automaticamente o valor 'base' que colocamos no vite.config.js
+    <Router basename={import.meta.env.BASE_URL}>
       <div className="min-h-screen flex flex-col bg-inusi-light">
         <Header />
 
@@ -30,7 +32,7 @@ function App() {
           </Routes>
         </main>
 
-        <Footer /> {/* <--- Adicione aqui */}
+        <Footer />
       </div>
     </Router>
   );
