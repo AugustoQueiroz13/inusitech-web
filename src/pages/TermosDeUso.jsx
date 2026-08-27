@@ -95,9 +95,7 @@ const TermosDeUso = () => {
           </Secao>
 
           <Secao titulo="6. Limitação de Responsabilidade">
-            <p>
-              A Inusitech não se responsabiliza por:
-            </p>
+            <p>A Inusitech não se responsabiliza por:</p>
             <ul className="list-disc pl-6 space-y-1">
               <li>Danos diretos, indiretos ou consequenciais decorrentes do uso ou impossibilidade de uso deste site</li>
               <li>Interrupções temporárias de acesso por manutenção, falhas técnicas ou causas externas</li>

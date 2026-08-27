@@ -1,5 +1,4 @@
-// Catálogo de produtos Inusitech
-// Obs: dimensões físicas dos modelos 4T e 5T devem ser confirmadas com o fabricante antes da publicação
+import livroImg from '../assets/aartedamanutencaoeletronica.webp';
 
 const produtos = [
   {
@@ -159,7 +158,7 @@ const produtos = [
     nome: 'A Arte da Manutenção Eletrônica',
     subtitulo: 'Literatura técnica especializada — Inusitech',
     categoria: 'Livros',
-    imagem: 'https://cdn.awsli.com.br/800x800/1882/1882835/produto/403371495/98ccaddb796244eca7612c6948499889-cw11rrhmbl.png',
+    imagem: livroImg,
     descricao: 'Obra técnica desenvolvida com base em anos de experiência em manutenção eletrônica aplicada. Conteúdo prático e objetivo para profissionais e estudantes da área de eletrônica.',
     destaques: [
       'Conteúdo técnico especializado',
@@ -167,7 +166,10 @@ const produtos = [
       'Para profissionais e estudantes',
       'Publicação Inusitech',
     ],
-    specs: [],
+    specs: [
+      { label: 'Autor', value: 'Paulo Queiroz' },
+      { label: 'ISBN', value: '978-65-02268-10-0' },
+    ],
     aplicacoes: [],
     linkLoja: 'https://inusitech.lojaintegrada.com.br/livro-a-arte-da-manutencao-eletronica',
   },

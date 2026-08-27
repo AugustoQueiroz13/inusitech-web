@@ -122,7 +122,11 @@ const ProdutoDetalhe = () => {
               variants={fadeIn}
             >
               <h2 className="text-3xl font-heading font-bold text-inusi-dark uppercase mb-2">
-                Especificações <span className="text-inusi-blue">Técnicas</span>
+                {produto.categoria === 'Livros' ? (
+                  <>Informações <span className="text-inusi-blue">do Livro</span></>
+                ) : (
+                  <>Especificações <span className="text-inusi-blue">Técnicas</span></>
+                )}
               </h2>
               <div className="h-1 w-16 bg-inusi-red mb-10"></div>
 

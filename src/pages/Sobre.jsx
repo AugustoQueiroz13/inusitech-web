@@ -2,7 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
   Shield, Lightbulb, Award, Microscope,
-  Target, Users, TrendingUp, CheckCircle, Globe
+  Target, Users, TrendingUp, CheckCircle, Globe,
+  BookOpen, Building, Zap, Star
 } from 'lucide-react';
 
 const fadeIn = {
@@ -14,31 +15,37 @@ const timelineItems = [
   {
     year: '2005',
     title: 'O Começo',
+    icon: <BookOpen size={22} />,
     texto: 'Diante de recorrentes problemas relacionados à qualidade da energia elétrica fornecida às casas e empresas, iniciaram-se estudos voltados ao desenvolvimento de soluções capazes de aumentar a confiabilidade dos sistemas elétricos. Dessa pesquisa nasceu o primeiro projeto técnico, posteriormente registrado nos anais da Feira Brasileira de Ciência e Engenharia (FEBRACE), marcando o início de uma trajetória dedicada à inovação.',
   },
   {
     year: '2008',
     title: 'Reconhecimento Nacional',
+    icon: <Award size={22} />,
     texto: 'O trabalho recebeu reconhecimento nacional ao conquistar premiação por inovação tecnológica na Universidade de São Paulo (USP), reforçando o potencial das soluções desenvolvidas e abrindo caminho para a próxima fase de pesquisa.',
   },
   {
     year: '2012',
     title: 'Financiamento FAPERJ',
+    icon: <Building size={22} />,
     texto: 'A pesquisa ganhou novo impulso com financiamento da Fundação Carlos Chagas Filho de Amparo à Pesquisa do Estado do Rio de Janeiro (FAPERJ). Durante os três anos seguintes foram desenvolvidas tecnologias voltadas à alimentação elétrica de sistemas industriais complexos, capazes de operar com maior confiabilidade mesmo em ambientes agressivos e sujeitos a intempéries.',
   },
   {
     year: '2016',
     title: 'Fundação Oficial',
+    icon: <Zap size={22} />,
     texto: 'Nasce oficialmente a Inusitech, com a missão de desenvolver soluções em engenharia elétrica, qualidade de energia e proteção de sistemas eletrônicos críticos. Nos anos seguintes, a empresa consolidou experiência em infraestrutura de telecomunicações, sistemas industriais e engenharia aplicada, ampliando continuamente seu campo de atuação.',
   },
   {
     year: '2021',
     title: 'Expansão de Mercado',
+    icon: <TrendingUp size={22} />,
     texto: 'Diante dos desafios impostos pela pandemia, a Inusitech expandiu seu portfólio para atender também o mercado comercial e residencial, lançando novas linhas de proteção elétrica desenvolvidas conforme as necessidades do mercado.',
   },
   {
     year: 'Hoje',
     title: 'Referência Regional',
+    icon: <Star size={22} />,
     texto: 'A Inusitech é reconhecida como um dos principais centros privados de pesquisa aplicada, manutenção eletrônica especializada e desenvolvimento de soluções elétricas do interior do Estado do Rio de Janeiro, reunindo engenharia, inovação e conhecimento para atender os setores industrial, clínico e tecnológico.',
   },
 ];
@@ -85,6 +92,7 @@ const Sobre = () => {
       {/* Nossa História */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
+
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -96,7 +104,6 @@ const Sobre = () => {
             <h2 className="text-4xl font-heading font-bold text-inusi-dark">NOSSA HISTÓRIA</h2>
           </motion.div>
 
-          {/* Intro */}
           <motion.p
             initial="hidden"
             whileInView="visible"
@@ -110,9 +117,9 @@ const Sobre = () => {
           {/* Timeline vertical */}
           <div className="relative">
             {/* Linha vertical */}
-            <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-inusi-blue via-inusi-gold to-inusi-red"></div>
+            <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-gradient-to-b from-inusi-blue via-inusi-gold to-inusi-red z-0"></div>
 
-            <div className="space-y-12">
+            <div className="space-y-10">
               {timelineItems.map((item, index) => (
                 <motion.div
                   key={index}
@@ -120,20 +127,21 @@ const Sobre = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.08 }}
-                  className="flex gap-8 md:gap-12 relative"
+                  className="flex gap-6 md:gap-10 relative"
                 >
-                  {/* Marcador */}
-                  <div className="flex flex-col items-center flex-shrink-0">
-                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-inusi-red border-4 border-white ring-2 ring-inusi-red shadow-lg flex items-center justify-center z-10">
-                      <span className="text-white font-heading font-bold text-xs md:text-sm leading-tight text-center">
-                        {item.year}
-                      </span>
+                  {/* Bolinha com ícone */}
+                  <div className="flex-shrink-0 z-10">
+                    <div className="w-14 h-14 rounded-full bg-inusi-red border-4 border-white ring-2 ring-inusi-red shadow-lg flex items-center justify-center text-white">
+                      {item.icon}
                     </div>
                   </div>
 
                   {/* Conteúdo */}
-                  <div className="pb-4 pt-2 flex-grow">
-                    <h3 className="text-xl font-heading font-bold text-inusi-dark uppercase mb-3 tracking-wide">
+                  <div className="pb-6 flex-grow pt-1">
+                    <span className="block text-inusi-blue font-heading font-bold text-2xl leading-none mb-1">
+                      {item.year}
+                    </span>
+                    <h3 className="text-sm font-heading font-bold text-inusi-dark uppercase tracking-widest mb-3">
                       {item.title}
                     </h3>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
@@ -146,6 +154,21 @@ const Sobre = () => {
           </div>
         </div>
       </section>
+
+      {/* Divisória estilizada */}
+      <div className="bg-white py-10">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="flex items-center gap-4">
+            <div className="flex-grow h-px bg-gradient-to-r from-transparent via-inusi-gold/50 to-inusi-gold/80"></div>
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-inusi-blue block"></span>
+              <span className="w-4 h-4 rotate-45 bg-inusi-red block"></span>
+              <span className="w-2 h-2 rounded-full bg-inusi-gold block"></span>
+            </div>
+            <div className="flex-grow h-px bg-gradient-to-l from-transparent via-inusi-gold/50 to-inusi-gold/80"></div>
+          </div>
+        </div>
+      </div>
 
       {/* Missão e Visão */}
       <section className="py-20 bg-gray-50">
