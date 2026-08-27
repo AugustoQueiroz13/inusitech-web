@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import produtos from '../data/produtos';
+import banner1 from '../assets/banner1.jpg';
+import banner2 from '../assets/banner2.jpg';
+import banner3 from '../assets/banner3.jpg';
 
 const categorias = ['Todos', 'Filtros de Linha', 'Livros'];
+const banners = [banner1, banner2, banner3];
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -13,6 +17,17 @@ const fadeIn = {
 
 const Produtos = () => {
   const [categoriaAtiva, setCategoriaAtiva] = useState('Todos');
+  const [bannerAtivo, setBannerAtivo] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setBannerAtivo((prev) => (prev === banners.length - 1 ? 0 : prev + 1));
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [bannerAtivo]);
+
+  const prevBanner = () => setBannerAtivo((prev) => (prev === 0 ? banners.length - 1 : prev - 1));
+  const nextBanner = () => setBannerAtivo((prev) => (prev === banners.length - 1 ? 0 : prev + 1));
 
   const produtosFiltrados =
     categoriaAtiva === 'Todos'
@@ -46,6 +61,54 @@ const Produtos = () => {
           </p>
         </div>
       </div>
+
+      {/* Carrossel de banners */}
+      <section className="bg-gray-900 relative overflow-hidden">
+        <div className="relative w-full">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={bannerAtivo}
+              src={banners[bannerAtivo]}
+              alt={`Banner ${bannerAtivo + 1}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="w-full object-contain max-h-[480px]"
+            />
+          </AnimatePresence>
+
+          {/* Setas */}
+          <button
+            onClick={prevBanner}
+            className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 transition-colors z-10"
+            aria-label="Banner anterior"
+          >
+            <ChevronLeft size={28} />
+          </button>
+          <button
+            onClick={nextBanner}
+            className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full p-2 transition-colors z-10"
+            aria-label="Próximo banner"
+          >
+            <ChevronRight size={28} />
+          </button>
+
+          {/* Dots */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {banners.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setBannerAtivo(index)}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  index === bannerAtivo ? 'bg-inusi-red w-10' : 'bg-white/50 w-3 hover:bg-white'
+                }`}
+                aria-label={`Ir para banner ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Filtros de categoria */}
       <div className="bg-white border-b border-gray-100 sticky top-20 z-30">
@@ -93,7 +156,6 @@ const Produtos = () => {
 
                     {/* Conteúdo */}
                     <div className="p-6 flex flex-col flex-grow">
-                      {/* Badge de categoria */}
                       <span className="inline-block bg-inusi-blue/10 text-inusi-blue text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-sm mb-3 self-start">
                         {produto.categoria}
                       </span>
@@ -103,7 +165,6 @@ const Produtos = () => {
                       </h3>
                       <p className="text-gray-400 text-xs mb-4 font-medium">{produto.subtitulo}</p>
 
-                      {/* Destaques */}
                       <ul className="space-y-2 mb-6 flex-grow">
                         {produto.destaques.map((destaque, i) => (
                           <li key={i} className="flex items-center gap-2 text-gray-600 text-sm">
@@ -113,7 +174,6 @@ const Produtos = () => {
                         ))}
                       </ul>
 
-                      {/* CTA */}
                       <div className="flex items-center gap-2 text-inusi-red font-bold text-sm uppercase tracking-wide group-hover:gap-3 transition-all">
                         Ver Especificações
                         <ArrowRight size={16} />
@@ -131,7 +191,6 @@ const Produtos = () => {
         </div>
       </section>
 
-      {/* Nota de expansão */}
       <div className="container mx-auto px-4 pb-4">
         <p className="text-center text-gray-400 text-sm">
           Novos produtos e categorias são adicionados continuamente. Consulte também nossa loja virtual para ver todas as disponibilidades.
