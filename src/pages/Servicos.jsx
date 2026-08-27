@@ -80,7 +80,7 @@ const Servicos = () => {
                             <motion.a
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                href="https://wa.me/5500000000000"
+                                href="https://wa.me/5522997378508"
                                 className="inline-flex items-center gap-2 bg-inusi-blue text-white px-8 py-4 rounded-sm font-bold hover:bg-blue-900 transition-colors shadow-lg uppercase tracking-wide"
                             >
                                 Consultar Projeto

@@ -49,7 +49,7 @@ const Header = () => {
 
                         {/* Botão de Ação - Suporte/WhatsApp */}
                         <a
-                            href="https://wa.me/5500000000000" // Link placeholder do Whats
+                            href="https://wa.me/5522997378508" // Link placeholder do Whats
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-inusi-red text-white px-4 py-2 rounded-md font-bold text-sm flex items-center gap-2 hover:bg-red-700 transition-colors"
@@ -90,7 +90,7 @@ const Header = () => {
                         ))}
                         <div className="pt-4 pb-2">
                             <a
-                                href="https://wa.me/5500000000000"
+                                href="https://wa.me/5522997378508"
                                 className="w-full bg-inusi-red text-white px-4 py-3 rounded-md font-bold text-center block hover:bg-red-700"
                             >
                                 Falar no WhatsApp
