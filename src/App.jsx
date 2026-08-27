@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useLayoutEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -14,9 +14,20 @@ import Contato from './pages/Contato';
 import Privacidade from './pages/Privacidade';
 import TermosDeUso from './pages/TermosDeUso';
 
+function ScrollReset() {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <Router basename={import.meta.env.BASE_URL}>
+      <ScrollReset />
       <div className="min-h-screen flex flex-col bg-inusi-light">
         <Header />
         <main className="flex-grow pt-20">
